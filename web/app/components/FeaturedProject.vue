@@ -1,32 +1,10 @@
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import valenciagrace from '@/assets/img/projects/valenciagrace.png';
-import sipsandsparks from '@/assets/img/projects/sipsandsparks.png';
-    const featuredProjects = ref([
-        {
-            title: 'Valencia Grace Website',
-            description: `Valencia Grace is the official website of music artist Valencia Grace, designed to showcase her latest releases, music videos, tour dates, and exclusive content. The website delivers an immersive, responsive experience that reflects the artist's unique theatrical pop aesthetic while making it easy for fans to discover and stream her music across major platforms.`,
-            link: 'https://www.valenciagrace.com',
-            client: 'Valencia Grace',
-            year: '2025',
-            role: 'Full Stack Developer',
-            img: valenciagrace
-        },
-        {
-            title: 'Speed Dating Web Application',
-            description: 'Teamed up with a designer to breathe life into a promotional webpage for our beloved show, Adventure Time. Delivered a fully responsive design with dynamic content capabilities, seamlessly integrating a newsletter feature to keep fans updated with the latest adventures.',
-            link: 'https://www.sipsandsparks.com',
-            client: 'Sips and Sparks LLC',
-            year: '2025',
-            role: 'Full Stack Developer',
-            img: sipsandsparks
-        },
-    ])
+const { projects: featuredProjects } = useProjects()
 </script>
 
 <template>
-    <div class="featured-project-container d-flex flex-column w-100">
+    <div id="featured-projects" class="featured-project-container d-flex flex-column w-100">
         <div v-reveal class="header-title">
             <h1 class="text-uppercase">Featured Projects</h1>
             <p>Here are some of the selected projects that showcase my passion as a web developer.</p>
@@ -34,9 +12,12 @@ import sipsandsparks from '@/assets/img/projects/sipsandsparks.png';
 
         <div class="fp-content-container">
             <div v-for="(project, i) in featuredProjects" :key="`featured-project-${i}`" class="ft-content-wrapper d-flex align-items-center w-100">
-                <div v-reveal.left class="ft-image d-flex align-items-center justify-content-center w-100">
-                    <img :src="project.img" :alt="project.title">
-                </div>
+                <nuxt-link :to="`/projects/${project.slug}`" v-reveal.left class="ft-image d-flex align-items-center justify-content-center w-100">
+                    <img :src="project.coverImage" :alt="project.title">
+                    <div class="ft-image-overlay d-flex align-items-center justify-content-center">
+                        <span>View Snapshots</span>
+                    </div>
+                </nuxt-link>
 
                 <div v-reveal.right="120" class="ft-details w-100">
                     <div class="description">
@@ -68,8 +49,13 @@ import sipsandsparks from '@/assets/img/projects/sipsandsparks.png';
                     </div>
                     <div class="line-separator"></div>
                     
-                    <div class="redirect-button d-flex">
-                        <a :href="project.link" target="_blank" rel="noopener noreferrer">
+                    <div class="redirect-button d-flex gap-4">
+                        <nuxt-link :to="`/projects/${project.slug}`">
+                            <div class="d-flex align-items-center gap-1">
+                                <span>View Details</span>
+                            </div>
+                        </nuxt-link>
+                        <a v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer">
                             <div class="d-flex align-items-center gap-1">
                                 <span>Live Demo</span>
                                 <img src="~assets/img/live-demo.svg" alt="live-demo" style="height: 24px;">
@@ -127,16 +113,51 @@ import sipsandsparks from '@/assets/img/projects/sipsandsparks.png';
                     flex-direction: column;
                 }
                 .ft-image {
+                    position: relative;
                     background: #1A1A1A;
                     height: 600px !important;
                     border-radius: 12px;
+                    overflow: hidden;
+                    cursor: pointer;
 
                     img {
-                        
+
                         max-width: 500px;
                         border-radius: 1rem;
                         width: 100%;
+                        transition: 0.4s ease;
 
+                    }
+
+                    &-overlay {
+                        position: absolute;
+                        inset: 0;
+                        background: rgba(0, 0, 0, 0.55);
+                        opacity: 0;
+                        transition: 0.3s ease;
+
+                        span {
+                            font-family: 'Manrope';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 16px;
+                            text-transform: uppercase;
+                            letter-spacing: 0.02em;
+                            color: #D3E97A;
+                            border: 1px solid #D3E97A;
+                            border-radius: 30px;
+                            padding: 12px 24px;
+                        }
+                    }
+
+                    &:hover {
+                        .ft-image-overlay {
+                            opacity: 1;
+                        }
+
+                        img {
+                            transform: scale(1.04);
+                        }
                     }
 
                     @include mobile-lg {
