@@ -25,7 +25,7 @@ export const PROFILE = {
 export const SOCIALS: readonly SocialLink[] = [
   { label: 'LinkedIn', url: '' },
   { label: 'GitHub', url: '' },
-  { label: 'Resume', url: '' }
+  { label: 'Resume', url: 'https://drive.google.com/file/d/158nC5k_N44aqWzHqF7W7IH4RAF9QTxI0/view?usp=drive_link' }
 ]
 
 /** Words wrapped in *asterisks* render in the italic serif. */

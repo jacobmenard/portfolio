@@ -44,7 +44,7 @@ const loop = <T,>(list: readonly T[]) => [...list, ...list]
           <div class="tile-col">
             <span class="label">Experience</span>
             <div>
-              <div class="big">5+</div>
+              <div class="big">7</div>
               <p class="muted" style="margin-top:12px;font-size:var(--t-sm)">Years building web and mobile apps. Writing production code since 2017.</p>
             </div>
           </div>
