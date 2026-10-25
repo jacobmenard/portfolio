@@ -17,6 +17,7 @@ export const PROFILE = {
   country: 'Philippines',
   timeZone: 'Asia/Manila',
   utcLabel: 'GMT+8',
+  resume: 'https://drive.google.com/file/d/158nC5k_N44aqWzHqF7W7IH4RAF9QTxI0/view?usp=drive_link',
   description:
     'Menard Catayas, full-stack developer in Butuan City, Philippines, building fast, functional web products with Vue, Nuxt and Laravel.'
 } as const
@@ -25,7 +26,7 @@ export const PROFILE = {
 export const SOCIALS: readonly SocialLink[] = [
   { label: 'LinkedIn', url: '' },
   { label: 'GitHub', url: '' },
-  { label: 'Resume', url: 'https://drive.google.com/file/d/158nC5k_N44aqWzHqF7W7IH4RAF9QTxI0/view?usp=drive_link' }
+  { label: 'Resume', url: PROFILE.resume }
 ]
 
 /** Words wrapped in *asterisks* render in the italic serif. */

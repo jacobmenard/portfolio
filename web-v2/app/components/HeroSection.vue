@@ -22,12 +22,13 @@ const headline = 'I design and build fast, functional web products, from Figma f
         <span class="ln" aria-hidden="true"><span>to production.</span></span>
       </h1>
       <p class="hero-sub" data-hero-fade>
-        <b>Vue, Nuxt and Laravel</b> on the web, Flutter on mobile. 5+ years shipping for teams in the US, UK, Canada and
+        <b>Vue, Nuxt, React and Laravel</b> on the web, Flutter on mobile. 7 years shipping for teams in the US, UK, Canada and
         Australia from {{ PROFILE.city }}, {{ PROFILE.country }}.
       </p>
       <div class="hero-cta" data-hero-fade>
         <a v-magnetic href="#work" class="btn btn-solid" @click.prevent="emit('navigate', '#work')">View selected work <span class="ar">→</span></a>
         <button v-magnetic class="btn" type="button" aria-live="polite" @click="copy">{{ copyLabel }}</button>
+        <a v-magnetic :href="PROFILE.resume" class="btn" target="_blank" rel="noopener noreferrer">View my CV <span class="ar">↗</span></a>
       </div>
       <div class="hero-foot label" data-hero-fade>
         <span>Local time <span style="color:var(--fg)">{{ clock }}</span> {{ PROFILE.utcLabel }}</span>
